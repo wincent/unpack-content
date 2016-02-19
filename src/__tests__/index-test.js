@@ -3,8 +3,6 @@
  * Licensed under the terms of the MIT license.
  */
 
-'use strict';
-
 const index = require('../index');
 
 describe('index', () => {
