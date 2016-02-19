@@ -29,7 +29,7 @@ import fs from 'fs';
 import unpackContent from 'unpack-content';
 
 const contentString = fs.readFileSync('content.md').toString();
-const {text, tags, ...metadata} = unpackContent(contentString);
+const {body, tags, ...metadata} = unpackContent(contentString);
 ```
 
 ## Development
