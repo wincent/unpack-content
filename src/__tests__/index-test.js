@@ -95,4 +95,24 @@ describe('index', () => {
       expect(body).toEqual('Material');
     });
   });
+
+  context('with invalid headers', () => {
+    beforeEach(() => {
+      // Note the incomplete end-header marker here.
+      content = '---\ntags: foo\n--\nThings';
+      ({tags, body, ...metadata} = unpackContent(content));
+    });
+
+    it('has no tags', () => {
+      expect(tags).toEqual([]);
+    });
+
+    it('has no other metadata', () => {
+      expect(metadata).toEqual({});
+    });
+
+    it('has text', () => {
+      expect(body).toEqual(content);
+    });
+  });
 });

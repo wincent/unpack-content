@@ -39,7 +39,7 @@ function measureHeaders(blob: string): Offsets {
 
   // Consume lines until hitting header end marker.
   const headersStart = match[0].length;
-  while ((match = regExp.exec(blob))) {
+  while ((match = regExp.exec(blob)) && match[0].length) {
     if (match[1] === '---\n' || match[1] === '---') {
       // Found end marker.
       const bodyStart = regExp.lastIndex;
