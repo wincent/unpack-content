@@ -1,7 +1,7 @@
 {
-  "name": "minimal-npm-boilerplate",
+  "name": "unpack-content",
   "version": "0.0.1",
-  "description": "Minimal boilerplate for creating an NPM package",
+  "description": "Extract header data and body from plaintext (Markdown-ish) markup source",
   "main": "dist/index.js",
   "scripts": {
     "build": "gulp build",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/wincent/minimal-npm-boilerplate.git"
+    "url": "https://github.com/wincent/unpack-content.git"
   },
   "author": {
     "name": "Greg Hurrell",
@@ -21,9 +21,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wincent/minimal-npm-boilerplate/issues"
+    "url": "https://github.com/wincent/unpack-content/issues"
   },
-  "homepage": "https://github.com/wincent/minimal-npm-boilerplate",
+  "homepage": "https://github.com/wincent/unpack-content",
   "devDependencies": {
     "babel": "5.8.20",
     "babel-eslint": "4.0.5",
@@ -38,7 +38,5 @@
     "mocha": "2.2.5",
     "sinon": "1.15.4"
   },
-  "dependencies": {
-    "babel-core": "5.8.20"
-  }
+  "dependencies": {}
 }
