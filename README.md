@@ -1,33 +1,51 @@
-# minimal-npm-boilerplate
+# unpack-content
 
-Minimal boilerplate for creating an NPM package. Includes:
-
-- gulp-powered build and watch tooling
-- Mocha/Sinon.JS test set-up
-- eslint
-- Flow
-- Babel for transpiling ES2015+ features to ES5 prior to publishing
-
-Clone, `npm install`, modify, and `npm publish`.
+Extract header data and body from plaintext (Markdown-ish) markup source.
 
 ## Install
 
 ```sh
-$ npm install --save minimal-npm-boilerplate
+$ npm install --save unpack-content
 ```
 
 ## Usage
 
-```js
-import index from 'minimal-npm-boilerplate';
+Given content in file `content.md`:
 
-index();
 ```
+---
+tags: foo bar baz
+---
+
+# Content
+
+Hi there!
+```
+
+Unpack the metadata from the rest using:
+
+```js
+import fs from 'fs';
+import unpackContent from 'unpack-content';
+
+const contentString = fs.readFileSync('content.md').toString();
+const {text, tags, ...metadata} = unpackContent(contentString);
+```
+
+## Development
+
+### Interesting `gulp` targets
+
+- `flow`: Check types.
+- `lint`: Run linter.
+- `test`: Run tests.
+- `babel`: Transform ES2015 JS (in `src/`) to ES5 (in `dist/`).
+- `build`: All of the above.
 
 ## Links
 
-- Source: [github.com/wincent/minimal-npm-boilerplate](https://github.com/wincent/minimal-npm-boilerplate)
-- Package: [www.npmjs.com/package/minimal-npm-boilerplate](https://www.npmjs.com/package/minimal-npm-boilerplate)
+- Source: [github.com/wincent/unpack-content](https://github.com/wincent/unpack-content)
+- Package: [www.npmjs.com/package/unpack-content](https://www.npmjs.com/package/unpack-content)
 
 ## License
 
