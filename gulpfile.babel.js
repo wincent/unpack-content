@@ -1,9 +1,9 @@
 // Copyright 2015-present Greg Hurrell. All rights reserved.
 // Licensed under the terms of the MIT license.
 
+import {exec} from 'child_process';
 import babel from 'gulp-babel';
 import eslint from 'gulp-eslint';
-import flow from 'gulp-flowtype';
 import gulp from 'gulp';
 import gutil from 'gulp-util';
 import mocha from 'gulp-spawn-mocha';
@@ -57,9 +57,12 @@ gulp.task('lint', () => (
     .pipe(eslint.format())
 ));
 
-gulp.task('typecheck', () => {
-  return gulp.src('src/**/*.js')
-    .pipe(wrap(flow()))
+gulp.task('typecheck', callback => {
+  exec('node_modules/.bin/flow', (err, stdout, stderr) => {
+    console.log(stdout);
+    console.log(stderr);
+    callback(err);
+  });
 });
 
 gulp.task('test', () => (

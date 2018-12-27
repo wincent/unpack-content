@@ -33,22 +33,24 @@ function measureHeaders(blob: string): Offsets {
 
   // Skip over initial header start marker.
   let match = regExp.exec(blob);
-  if (match[1] !== '---') {
-    return getEmptyOffsets();
-  }
+  if (match) {
+    if (match[1] !== '---') {
+      return getEmptyOffsets();
+    }
 
-  // Consume lines until hitting header end marker.
-  const headersStart = match[0].length;
-  while ((match = regExp.exec(blob)) && match[0].length) {
-    if (match[1] === '---\n' || match[1] === '---') {
-      // Found end marker.
-      const bodyStart = regExp.lastIndex;
-      const headersEnd = regExp.lastIndex - match[0].length;
-      return {
-        bodyStart,
-        headersEnd,
-        headersStart,
-      };
+    // Consume lines until hitting header end marker.
+    const headersStart = match[0].length;
+    while ((match = regExp.exec(blob)) && match[0].length) {
+      if (match[1] === '---\n' || match[1] === '---') {
+        // Found end marker.
+        const bodyStart = regExp.lastIndex;
+        const headersEnd = regExp.lastIndex - match[0].length;
+        return {
+          bodyStart,
+          headersEnd,
+          headersStart,
+        };
+      }
     }
   }
 
