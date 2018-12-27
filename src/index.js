@@ -2,7 +2,7 @@
  * Copyright 2016-present Greg Hurrell. All rights reserved.
  * Licensed under the terms of the MIT license.
  *
- * @flow
+ * @flow strict
  */
 
 type Content = {
@@ -58,7 +58,7 @@ function measureHeaders(blob: string): Offsets {
   return getEmptyOffsets();
 }
 
-function unpackHeaders(string: string): Object {
+function unpackHeaders(string: string): {[key: string]: string} {
   const headers = {};
   const regExp = /(\w+)[ \t]*:[ \t]*([^\n]*)(?:\n|$)/g;
   let match;
@@ -71,8 +71,11 @@ function unpackHeaders(string: string): Object {
 export default function unpackContent(blob: string): Content {
   const {bodyStart, headersEnd, headersStart} = measureHeaders(blob);
   const headersString = blob.substring(headersStart, headersEnd);
-  const metadata = unpackHeaders(headersString);
-  metadata.tags = metadata.tags ? metadata.tags.split(/\s+/) : [];
+  const headers = unpackHeaders(headersString);
+  const metadata = {
+    ...headers,
+    tags: headers.tags ? headers.tags.split(/\s+/) : [],
+  };
   const body = blob.slice(bodyStart);
   return {
     body,
