@@ -1,6 +1,6 @@
 {
   "name": "unpack-content",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Extract header data and body from plaintext (Markdown-ish) markup source",
   "files": [
     "dist/index.js",
