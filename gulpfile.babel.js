@@ -43,7 +43,7 @@ gulp.task('build', ['js']);
 
 gulp.task('flow', ['typecheck']);
 
-gulp.task('js', ['babel', 'lint', 'test', 'typecheck']);
+gulp.task('js', ['babel', 'lint', 'test', 'typecheck', 'types']);
 
 gulp.task('babel', () => (
   gulp.src('src/**/*.js')
@@ -63,6 +63,10 @@ gulp.task('typecheck', callback => {
     console.log(stderr);
     callback(err);
   });
+});
+
+gulp.task('types', callback => {
+  exec('cp src/index.js dist/index.js.flow', callback);
 });
 
 gulp.task('test', () => (
